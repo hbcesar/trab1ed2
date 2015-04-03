@@ -7,10 +7,7 @@
 #include "TADHashEnc.h"
 
 
-Palavra** hash;
-int tamHash = 5537;
-
-Palavra** insereReHash (Palavra** hash, Palavra* palavra){
+Palavra** insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
 	
 	Palavra* aux;
@@ -21,6 +18,7 @@ Palavra** insereReHash (Palavra** hash, Palavra* palavra){
 	verifica se existe colisao, caso exista,
 	aplica uma nova função de hash
 	*/
+
 	if(hash[n] == NULL){
 		hash[n] = palavra;
 	} else {
@@ -35,7 +33,7 @@ Palavra** insereReHash (Palavra** hash, Palavra* palavra){
 	return hash;
 }
 
-void imprimeReHash(){
+void imprimeReHash(Palavra** hash, int tamHash){
 	int i;
 	int contador;
 	Palavra* aux = hash[0];
@@ -60,7 +58,7 @@ void imprimeReHash(){
 	}
 }
 
-Palavra** populaReHash(Palavra** hash, Palavra* lista){
+Palavra** populaReHash(Palavra** hash, Palavra* lista, int tamHash ){
 	printf("Entrei na ReHash");
 	Palavra* aux = lista;
 	Palavra* aux2 = NULL;
@@ -71,10 +69,10 @@ Palavra** populaReHash(Palavra** hash, Palavra* lista){
 	 	while(aux != NULL){
 	 		aux2 = aux->proximo;
 	 		aux->proximo = NULL;
-	// 		hash = insereReHash(hash, aux);
+	 		hash = insereReHash(hash, aux, tamHash);
 	 		aux = aux2;
 	 	}
-	 	//free(lista);	
+	 	free(lista);	
 	 }
 	return hash;
 }
