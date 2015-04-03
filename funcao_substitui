@@ -1,0 +1,147 @@
+int EhPrimo(int numero) {
+    if (numero <= 1) return 0; 
+    int i;
+    for (i=2; i*i<=numero; i++) {
+        if (numero % i == 0) 
+        return 0;
+    }
+    return 1;
+}
+
+int tamanho_hash(int numero_de_palavras){
+int i = (numero_de_palavras*2)+1;
+
+while (EhPrimo(i) !=1){
+i=i+2;
+}
+return i;
+}
+
+int hash(char* s) {
+    int i;
+    int total =0;
+    
+    for (i=0;i!='\0';i++){
+      total = total + s[i];
+      return total;
+			  }
+    }     
+
+
+int meio_do_quadrado(int tamanho_da_hash, char* palavra){
+int i;
+
+long int tamanho = hash(palavra);
+
+tamanho = tamanho x tamanho;
+
+char* str;
+str = (char*)malloc((strlen(palavra)+1)*sizeof(char));
+strcpy(str,palavra);
+
+char* str2;
+str2 = (char*)malloc(((strlen(palavra)+1)/2)*sizeof(char));
+
+for (i=0;i<((strlen(palavra)+1)/2);i++){
+str2[i]=str[i];
+}
+
+return atoi(str2);
+
+
+}
+
+
+void substitui_acentos(char* palavra){
+
+for(int i=0; i < strlen(palavra); i++)
+{
+    switch(palavra[i])
+    {
+        case 'à':
+        palavra[i] = 'a';
+            break;
+        
+        case 'ã':
+        palavra[i] = 'a';
+            break;
+            
+        case 'á':
+        palavra[i] = 'a';
+            break;
+            
+        case 'â':
+        palavra[i] = 'a';
+            break;
+            
+        case 'ä':
+        palavra[i] = 'a';
+            break;
+            
+        case 'è':
+        palavra[i] = 'e';
+            break;
+            
+        case 'é':
+        palavra[i] = 'e';
+            break;
+            
+        case 'ë':
+        palavra[i] = 'e';
+            break;
+            
+        case 'ê':
+        palavra[i] = 'e';
+            break;    
+        
+        case 'ì':
+        palavra[i] = 'i';
+            break;   
+        
+        case 'í':
+        palavra[i] = 'i';
+            break;
+            
+        case 'ï':
+        palavra[i] = 'i';
+            break;
+            
+        case 'î':
+        palavra[i] = 'i';
+            break;
+            
+        case 'ò':
+        palavra[i] = 'o';
+            break;    
+      
+        case 'ó':
+        palavra[i] = 'o';
+            break;   
+        
+        case 'ö':
+        palavra[i] = 'o';
+            break;  
+        
+        case 'ô':
+        palavra[i] = 'o';
+            break;  
+        
+        case 'ù':
+        palavra[i] = 'u';
+            break;    
+      
+        case 'ú':
+        palavra[i] = 'u';
+            break;   
+        
+        case 'ü':
+        palavra[i] = 'u';
+            break;  
+        
+        case 'û':
+        palavra[i] = 'u';
+            break;  
+        
+    }
+}
+}
