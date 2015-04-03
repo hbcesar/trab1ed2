@@ -37,7 +37,7 @@ int chaveAuxiliar(char* s);
 // Output: Número da posição em que a palavra irá se localizaar na Hash.
 // Pré-condição: Palavra é uma string válida
 // Pós condição: Posição é retornada e existe no intervalo da Hash
-int chaveHash(char* palavra);
+int chaveHash(char* palavra, int tamHash);
 
 // Função que percorre a lista de palavras e as insere na tabela Hash
 // Input: Lista de palavras

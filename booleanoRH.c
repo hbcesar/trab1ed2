@@ -12,7 +12,7 @@ Palavra** insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 	
 	Palavra* aux;
 
-	n = chaveHash(palavra->palavra);
+	n = chaveHash(palavra->palavra, tamHash);
 
 	/*
 	verifica se existe colisao, caso exista,

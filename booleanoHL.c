@@ -21,7 +21,7 @@ Palavra** insereHashLinear(Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
 	Palavra* aux;
 
-	n = chaveHash(palavra->palavra);
+	n = chaveHash(palavra->palavra, tamHash);
 
 	/*
 	verifica se existe colisao, caso exista,
@@ -42,10 +42,10 @@ Palavra** insereHashLinear(Palavra** hash, Palavra* palavra, int tamHash){
 	return hash;
 }
 
-Palavra* buscaHashLinear(Palavra** hash, char* palavra){
+Palavra* buscaHashLinear(Palavra** hash, char* palavra, int tamHash){
 	int chave =0;
 
-	chave = chaveHash(palavra);
+	chave = chaveHash(palavra, tamHash);
 	
 	while(hash[chave] != NULL && strcmp(hash[chave]->palavra, palavra) != 0)
 		chave++;

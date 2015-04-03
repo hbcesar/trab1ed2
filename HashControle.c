@@ -4,7 +4,7 @@
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 
-int tamHash;
+// int tamHash;
 
 
 Palavra** alocaHash(int tamHash){
@@ -54,7 +54,7 @@ int chaveAuxiliar(char* s) {
     return total;
 }     
 
-int chaveHash(char* palavra){
+int chaveHash(char* palavra, int tamHash){
 	int i,j, chave;
 	int contaDigitos = 0;
 

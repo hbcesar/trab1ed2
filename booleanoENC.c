@@ -23,11 +23,11 @@
 // }
 
 
-void insereHash (Palavra** hash, Palavra* palavra){
+void insereHash (Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
 	Palavra* aux;
 
-	n = chaveHash(palavra->palavra);
+	n = chaveHash(palavra->palavra, tamHash);
 
 	/*
 	verifica se existe colisao, caso exista,
@@ -44,10 +44,10 @@ void insereHash (Palavra** hash, Palavra* palavra){
 	}
 }
 
-Palavra* busca(Palavra** hash, char* palavra){
+Palavra* busca(Palavra** hash, char* palavra, int tamHash){
 	int chave =0;
 
-	chave = chaveHash(palavra);
+	chave = chaveHash(palavra, tamHash);
 
 	Palavra* aux = hash[chave];
 	
@@ -86,7 +86,7 @@ void imprimeHash(Palavra** hash, int tamHash){
 	}
 }
 
-void populaHashENC(Palavra* lista, Palavra** hash){
+void populaHashENC(Palavra* lista, Palavra** hash, int tamHash){
 	Palavra* aux;
 	Palavra* aux2;
 
@@ -95,7 +95,7 @@ void populaHashENC(Palavra* lista, Palavra** hash){
 	while(aux!=NULL){
 		aux2 = aux->proximo;
 		aux->proximo = NULL;
-		insereHash(hash, aux);
+		insereHash(hash, aux, tamHash);
 		aux=aux2;
 	}
 }

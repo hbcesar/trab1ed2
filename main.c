@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
 	tamHash = tamanho_hash(nmrPalavras(lista));
 	hash = alocaHash(tamHash);
 
-	populaHashENC(lista, hash);
+	populaHashENC(lista, hash, tamHash);
 
 	imprimeHash(hash, tamHash);
 
