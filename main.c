@@ -4,7 +4,8 @@
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
-// #include "booleanoRH.h"
+#include "booleanoHL.h"
+#include "booleanoRH.h"
 
 int main(int argc, char *argv[]){
 	int i;
@@ -16,7 +17,7 @@ int main(int argc, char *argv[]){
 	tamHash = tamanho_hash(nmrPalavras(lista));
 	hash = alocaHash(tamHash);
 
-	populaHashENC(lista, hash, tamHash);
+	populaHashLinear(lista, hash, tamHash);
 
 	imprimeHash(hash, tamHash);
 

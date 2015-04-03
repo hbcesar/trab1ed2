@@ -58,8 +58,8 @@ void imprimeReHash(Palavra** hash, int tamHash){
 	}
 }
 
-Palavra** populaReHash(Palavra** hash, Palavra* lista, int tamHash ){
-	printf("Entrei na ReHash");
+void populaReHash(Palavra** hash, Palavra* lista, int tamHash ){
+
 	Palavra* aux = lista;
 	Palavra* aux2 = NULL;
 
@@ -74,5 +74,4 @@ Palavra** populaReHash(Palavra** hash, Palavra* lista, int tamHash ){
 	 	}
 	 	free(lista);	
 	 }
-	return hash;
 }

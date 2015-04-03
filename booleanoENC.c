@@ -6,23 +6,6 @@
 #include "TADHashEnc.h"
 
 
-// int tamHash;
-
-// Palavra** hash;
-
-// void alocaHash(int nmrPalavras){
-// 	int i;
-
-// 	tamHash = tamanho_hash(nmrPalavras);
-
-// 	hash = (Palavra**)malloc(tamHash*sizeof(Palavra*));
-
-// 	for(i=0;i<tamHash;i++){
-// 		hash[i]=NULL;
-// 	}
-// }
-
-
 void insereHash (Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
 	Palavra* aux;
