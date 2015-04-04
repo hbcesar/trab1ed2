@@ -25,16 +25,20 @@ int insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 		return 1;
 	} else {
 		// se c receber zero, gera loop infinito!
-		int c = (n % tamHash);
-		printf("quenda o valor de C: %d\n", c);
+		int c  = abs(palavra->palavra[0]);
 		int k = n +c;
 		aux = hash[k];
 
 		while (hash[k] != NULL ){
 			k = k + c;
 			if (k > tamHash){
-				printf("ReHash estourou, mulher");
-				return 0;
+				
+				 int j = k - tamHash;
+				 while (hash[j] != NULL ){
+				j = j + c;	
+				}
+				hash[j] = palavra;
+				return 1;
 			}
 		}
 		hash[k] = palavra;
@@ -47,9 +51,7 @@ void imprimeReHash(Palavra** hash, int tamHash){
 	int contador;
 	Palavra* aux = hash[0];
 
-	printf("O tamanho da hash é %d\n", tamHash);
-
-	for(i=0; i<tamHash; i++){
+		for(i=0; i<tamHash; i++){
 
 		if(hash[i] != NULL){
 			aux = hash[i];

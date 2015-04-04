@@ -18,19 +18,20 @@ void gerarIndice(char* tipo, char* entrada){
 	lista = leArquivoDocumentos(lista, entrada);
 	//imprimeLista(lista);
 	tamHash = tamanho_hash(nmrPalavras(lista));
+	printf("Tamanho da hash é : %d \n",tamHash);
 	hash = alocaHash(tamHash);
 
 	// if(strcmp(tipo, "booleanoENC") == 0)
-	 	populaHashENC(lista, hash, tamHash);
+	// 	 populaHashENC(lista, hash, tamHash);
 	// else if (strcmp(tipo, "booleanoHL") == 0)
 	// 	populaHashLinear(lista, hash, tamHash);
 	// 	else if(strcmp(tipo, "booleanoRH") == 0)
-	// 		populaReHash(lista, hash, tamHash);
+			populaReHash(lista, hash, tamHash);
 	// 		else if (strcmp(tipo, "booleanoAB") == 0)
 	// 			printf("Je ne suis tuas nega");
 
-	imprimeHash(hash, tamHash);
-
+	//imprimeHash(hash, tamHash);
+	imprimeReHash(hash,tamHash);
 }
 
 void lerIndice(){
