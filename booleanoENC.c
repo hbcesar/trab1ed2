@@ -27,7 +27,7 @@ void insereHash (Palavra** hash, Palavra* palavra, int tamHash){
 	}
 }
 
-Palavra* busca(Palavra** hash, char* palavra, int tamHash){
+Palavra* buscaENC(Palavra** hash, char* palavra, int tamHash){
 	int chave =0;
 
 	chave = chaveHash(palavra, tamHash);

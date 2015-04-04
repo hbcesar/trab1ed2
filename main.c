@@ -31,7 +31,9 @@ void gerarIndice(char* tipo, char* entrada){
 	// 			printf("Je ne suis tuas nega");
 
 	//imprimeHash(hash, tamHash);
-	imprimeReHash(hash,tamHash);
+	//imprimeReHash(hash,tamHash);
+			Palavra* busca = buscaRH(hash, "principezinho", tamHash);
+			printf("Busca: %s\n", busca->palavra);
 }
 
 void lerIndice(){

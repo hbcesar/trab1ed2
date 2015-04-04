@@ -18,7 +18,7 @@ void imprimeHash(Palavra** hash, int tamHash);
 // Output: Palavra encontrada.
 // Pré-condição: Palavra é uma string válida.
 // Pós condição:  Palavra está presente no Hash e é retornada.
-Palavra* busca(Palavra** hash, char* palavra, int tamHash);
+Palavra* buscaENC(Palavra** hash, char* palavra, int tamHash);
 
 // Função que insere uma palavra na Hash
 // Input: Ponteiro para uma estrutura palavra.
