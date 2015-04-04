@@ -24,9 +24,9 @@ void gerarIndice(char* tipo, char* entrada){
 	// if(strcmp(tipo, "booleanoENC") == 0)
 	// 	 populaHashENC(lista, hash, tamHash);
 	// else if (strcmp(tipo, "booleanoHL") == 0)
-	 	populaHashLinear(lista, hash, tamHash);
+	 	//populaHashLinear(lista, hash, tamHash);
 	// 	else if(strcmp(tipo, "booleanoRH") == 0)
-	//		populaReHash(lista, hash, tamHash);
+			populaReHash(lista, hash, tamHash);
 	// 		else if (strcmp(tipo, "booleanoAB") == 0)
 	// 			printf("Je ne suis tuas nega");
 

@@ -4,19 +4,6 @@
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 
-// Palavra** alocaHash(int tamHash){
-// 	int i=0;
-// 	Palavra** hash;
-
-// 	hash = (Palavra**)malloc(tamHash*sizeof(Palavra));
-
-// 	for(i=0;i<tamHash;i++){
-// 		hash[i]=NULL;
-// 	}
-
-// 	return vetor;
-// }
-
 Palavra** insereHashLinear(Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
 	Palavra* aux;
@@ -74,47 +61,3 @@ void populaHashLinear(Palavra* lista, Palavra** hash, int tamHash){
 	}
 }
 
-// int chaveAuxiliar(char* s) {
-//     int i;
-//     int total=0;
-    
-//     for (i=0; i <= strlen(s) ;i++){
-//       total = total + abs(s[i]);
-//     }
-
-//     return total;
-// }     
-
-// int chaveHash(char* palavra, int tamHash){
-// 	int i,j, chave;
-// 	int contaDigitos = 0;
-
-// 	long int tamanho = chaveAuxiliar(palavra);
-// 	long int valor =0;
-
-// 	tamanho = tamanho * tamanho* tamanho;
-// 	valor = tamanho;
-// 	int ascii = abs(palavra[0]);
-// 	//verifica o numero de digitos de "tamanho"
-// 	while (valor != 0)
-//         {
-//             contaDigitos = contaDigitos + 1;
-//             valor = valor / 10;
-//         }
-	
-// 	char* str;
-// 	str = (char*)malloc((contaDigitos+1)*sizeof(char));
-
-// 	char* str2;
-// 	str2 = (char*)malloc(((contaDigitos+1)/2)*sizeof(char));
-
-// 	sprintf(str, "%ld", tamanho);
-
-// 	for (i=contaDigitos/2, j=0; i<contaDigitos; i++, j++){
-// 		str2[j]=str[i];
-// 	}
-	
-// 	chave = atoi(str2);
-// 	chave = chave * ascii;
-// 	return (chave % tamHash);
-// }

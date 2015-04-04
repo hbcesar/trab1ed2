@@ -6,8 +6,6 @@
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
 
-//FALTA IMPLEMENTAR FUNCAO DE BUSCA
-
 int insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
 	
@@ -24,7 +22,6 @@ int insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 		hash[n] = palavra;
 		return 1;
 	} else {
-		// se c receber zero, gera loop infinito!
 		int c  = abs(palavra->palavra[0]);
 		int k = n +c;
 		aux = hash[k];
@@ -78,7 +75,7 @@ void populaReHash(Palavra* lista, Palavra** hash, int tamHash ){
 	 			printf("Palavra nao foi inserida!\n");
 	 		aux = aux2;
 	 	}
-	 	//free(lista);	
+	 	free(lista);	
 	 }
 }
 
@@ -109,23 +106,4 @@ Palavra* buscaRH(Palavra** hash, char* palavra, int tamHash){
 		else return hash[k];
 	}
 
-
-
-	// int chave =0;
-	// int chaveaux = chaveHash(palavra);
-	// chave = chaveHash(palavra);
-	// int c  = abs(palavra->palavra[0]);
-	// while(hash[chave] != NULL && strcmp(hash[chave]->palavra, palavra) != 0){
-	// 	chave = chave + c;
-
-	// 	if (chave > TamHash){
-	// 		chave = TamHash - chave;
-	// 	}
-
-	// }
-	
-	// if(aux == NULL)
-	// 	return NULL;
-	// else
-	// 	return hash[chave];
 }

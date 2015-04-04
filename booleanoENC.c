@@ -73,11 +73,8 @@ void imprimeHash(Palavra** hash, int tamHash){
 				fprintf(arq, "\n");
 		} else{
 			fprintf(arq,"%d;-\n", i);
-		}
-			
+		}		
 	}
-
-
 }
 
 void populaHashENC(Palavra* lista, Palavra** hash, int tamHash){
@@ -92,41 +89,6 @@ void populaHashENC(Palavra* lista, Palavra** hash, int tamHash){
 		insereHash(hash, aux, tamHash);
 		aux=aux2;
 	}
+
+	free(lista);
 }
-
-// void removeHash (char* palavra){
-// 	short int flag=0;
-// 	Palavra *aux, *aux2;
-// 	int n;
-
-// 	//novamente acha o N
-
-// 	aux=hash[n];
-
-// 	if (aux == NULL){
-// 		printf("Palavra a ser removido não existe, queridinha!");
-// 		return;
-// 	}
-
-// 	//para o caso de ser o primeiro
-// 	if(strcmp(aux->palavra, palavra)==0){
-// 		hash[n] = aux->proximo;
-// 		flag = 1;
-// 	} else {
-// 		//caso nao for o primeiro, percorre o resto da lista
-// 		while(aux->proximo != NULL){
-// 			aux2=aux;
-// 			aux=aux->proximo;
-
-// 			if(strcmp(aux->palavra, palavra)==0){
-// 				aux2->proximo=aux->proximo;
-// 				flag = 1;
-// 			}
-// 		}	
-// 	} 
-		
-// 	//aviso, caso Palavra a ser removido nao tenha sido encontrado
-// 	if(!flag){
-// 		printf("Palavra a ser removido não existe, queridinha!");
-// 	} 
-// }
