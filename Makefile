@@ -1,5 +1,5 @@
 all:METODOS
-	./executavel entrada.txt
+	./executavel -i booleanoENC entrada.txt indice.txt
 METODOS:
 	gcc -c ledoc.c
 	gcc -c booleanoENC.c

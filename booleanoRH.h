@@ -1,3 +1,3 @@
 void imprimeReHash();
-Palavra** insereReHash (Palavra** hash, Palavra* palavra);
-void populaReHash(Palavra** hash, Palavra* lista);
+int insereReHash (Palavra** hash, Palavra* palavra);
+void populaReHash(Palavra* lista, Palavra** hash, int tamHash);

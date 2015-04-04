@@ -45,28 +45,39 @@ Palavra* busca(Palavra** hash, char* palavra, int tamHash){
 
 
 void imprimeHash(Palavra** hash, int tamHash){
+	FILE* arq;
 	int i;
 	int contador;
 	Palavra* aux = hash[0];
 
-	printf("O tamanho da hash é %d\n", tamHash);
+	arq = fopen("indice.txt", "w");
 
 	for(i=0; i<tamHash; i++){
 
 		if(hash[i] != NULL){
 			aux = hash[i];
 			while (aux!= NULL){
-			//	printf("\nPosicao no HASH: %d \t Palavra: %s\n", i, aux->palavra);
-			//	printf("\tDocumento: %s\t", aux->doc->nomeDoc);
-				printf("X");
+				fprintf(arq, "%d; %s; ", i, aux->palavra);
+				Documento* doc = aux ->doc;
+				while(doc != NULL){
+					fprintf(arq, "%s; ", aux->doc->nomeDoc);
+					Posicao* pos = doc->posicao;
+					while(pos!=NULL){
+						fprintf(arq, "%d; ", pos->posicao);
+						pos = pos->proximo;
+					}
+					doc=doc->proximo;
+				}
 				aux=aux->proximo;
 			}
-				printf("\n");
+				fprintf(arq, "\n");
 		} else{
-			printf("-\n");
+			fprintf(arq,"%d;-\n", i);
 		}
 			
 	}
+
+
 }
 
 void populaHashENC(Palavra* lista, Palavra** hash, int tamHash){

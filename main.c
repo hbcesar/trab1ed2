@@ -7,36 +7,45 @@
 #include "booleanoHL.h"
 #include "booleanoRH.h"
 
-int main(int argc, char *argv[]){
-	int i;
+void gerarIndice(char* tipo, char* entrada){
 	Palavra* lista;
 	Palavra** hash;
 	int tamHash =0;
+	lista=NULL;
 
-	lista = leArquivoDocumentos(lista, argv[1]);
+	printf("Entrada %s\n", entrada);
+
+	lista = leArquivoDocumentos(lista, entrada);
+	//imprimeLista(lista);
 	tamHash = tamanho_hash(nmrPalavras(lista));
 	hash = alocaHash(tamHash);
 
-	populaHashLinear(lista, hash, tamHash);
+	// if(strcmp(tipo, "booleanoENC") == 0)
+	 	populaHashENC(lista, hash, tamHash);
+	// else if (strcmp(tipo, "booleanoHL") == 0)
+	// 	populaHashLinear(lista, hash, tamHash);
+	// 	else if(strcmp(tipo, "booleanoRH") == 0)
+	// 		populaReHash(lista, hash, tamHash);
+	// 		else if (strcmp(tipo, "booleanoAB") == 0)
+	// 			printf("Je ne suis tuas nega");
 
 	imprimeHash(hash, tamHash);
 
-	//leArquivo(lista, "Leti.txt");
-	//lista = leArquivo(lista, "pequenoprincipe.txt");
+}
 
-	// for(i=0; i<argc; i++){
-	// 	printf("%s\n", argv[i]);
-	// }
+void lerIndice(){
 
-	// free(lista);
-	// lista = NULL;
-	// imprimeLista(lista);
-	//imprimeReHash();
+}
 
-	// Palavra* p = busca("digestão");
-	// if (p != NULL)
-	// 	printf("%s, %s, %d\n", p->palavra, p->doc->nomeDoc, p->doc->posicao->posicao);
-	// else printf("Palavra nao encontrada");
+int main(int argc, char *argv[]){
+	int i;
+	
 
+	if(strcmp(argv[1], "-i") == 0){
+		gerarIndice(argv[2], argv[3]);
+	}
+
+
+	
 	 return 0;
 }

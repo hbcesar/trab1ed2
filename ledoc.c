@@ -79,9 +79,9 @@ Documento* insereDoc(Documento* doc, char* nomeDoc, int posicao){
 Palavra* insere(Palavra* lista, char* word, char* nomeDoc, int posicao){
 	//checa se a lista esta vazia
 	if(lista == NULL){
-		lista = criaPalavra(word, nomeDoc, posicao);
-
-	} else{ //se nao estiver:
+		return criaPalavra(word, nomeDoc, posicao);
+	} 
+	else{ //se nao estiver:
 		//confere se o primeiro elemento nao tem a mesma palavra
 		if(strcmp (lista->palavra, word)==0){ // se tiver, insere documentos apenas
 			lista->doc = insereDoc(lista->doc, nomeDoc, posicao);
@@ -96,9 +96,10 @@ Palavra* insere(Palavra* lista, char* word, char* nomeDoc, int posicao){
 				aux->proximo = criaPalavra(word, nomeDoc, posicao);
 			}
 		}
+			return lista;
 	}
 
-	return lista;
+
 }
 
 Palavra* leArquivo(Palavra* lista, char* nomeArq){
@@ -112,6 +113,7 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 	arq = fopen(nomeArq, "r");
 	if(arq == NULL){
 		printf("Erro na leitura de arquivo.");
+		return NULL;
 	} else{
 		Palavra* p;
 		for(i=0;fscanf(arq,"%s", word) == 1 ; i++){
@@ -119,11 +121,10 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 			lista = insere(lista, word, nomeArq, i);	
 		}
 	}
-	fclose(arq);
-
-
 
 	return lista;
+//	fclose(arq);
+
 }
 
 void retiraAcento(char* word){
@@ -136,7 +137,7 @@ void retiraAcento(char* word){
 
 
 int leArquivoDocumentosAux(char* nomeArq){
-	int numLinha =1;
+	int numLinha =0;
 	FILE *arq;
 	char c;
 
@@ -152,7 +153,7 @@ int leArquivoDocumentosAux(char* nomeArq){
     			numLinha++;
  		}
 		fclose(arq);
-		return numLinha;
+		return ++numLinha;
 	}
 }
 
@@ -188,10 +189,7 @@ Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq){
 		lista = leArquivo(lista, entradas[i]);
 	}
 
-	fclose(arq);
-
-	//nmrPalavras(lista);
-	//populaHash(lista);
+	//fclose(arq);
 	
 	return lista;
 

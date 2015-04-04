@@ -6,8 +6,9 @@
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
 
+//FALTA IMPLEMENTAR FUNCAO DE BUSCA
 
-Palavra** insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
+int insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
 	
 	Palavra* aux;
@@ -21,16 +22,24 @@ Palavra** insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 
 	if(hash[n] == NULL){
 		hash[n] = palavra;
+		return 1;
 	} else {
+		// se c receber zero, gera loop infinito!
 		int c = (n % tamHash);
+		printf("quenda o valor de C: %d\n", c);
 		int k = n +c;
 		aux = hash[k];
-		while (hash[k] != NULL){
-		k = k + c;
+
+		while (hash[k] != NULL ){
+			k = k + c;
+			if (k > tamHash){
+				printf("ReHash estourou, mulher");
+				return 0;
+			}
 		}
-		aux = palavra;
+		hash[k] = palavra;
 	}
-	return hash;
+	return 1;
 }
 
 void imprimeReHash(Palavra** hash, int tamHash){
@@ -58,7 +67,7 @@ void imprimeReHash(Palavra** hash, int tamHash){
 	}
 }
 
-void populaReHash(Palavra** hash, Palavra* lista, int tamHash ){
+void populaReHash(Palavra* lista, Palavra** hash, int tamHash ){
 
 	Palavra* aux = lista;
 	Palavra* aux2 = NULL;
@@ -69,9 +78,10 @@ void populaReHash(Palavra** hash, Palavra* lista, int tamHash ){
 	 	while(aux != NULL){
 	 		aux2 = aux->proximo;
 	 		aux->proximo = NULL;
-	 		hash = insereReHash(hash, aux, tamHash);
+	 		if(!insereReHash(hash, aux, tamHash))
+	 			printf("Palavra nao foi inserida!\n");
 	 		aux = aux2;
 	 	}
-	 	free(lista);	
+	 	//free(lista);	
 	 }
 }
