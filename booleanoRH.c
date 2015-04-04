@@ -33,16 +33,11 @@ int insereReHash (Palavra** hash, Palavra* palavra, int tamHash){
 			k = k + c;
 			if (k > tamHash)
 				k = k - tamHash;
-				//  int j = k - tamHash;
-				//  while (hash[j] != NULL ){
-				// j = j + c;	
-				// }
-				// hash[j] = palavra;
-				// return 1;
 		}
 		hash[k] = palavra;
+		return 1;
 	}
-	return 1;
+	
 }
 
 void imprimeReHash(Palavra** hash, int tamHash){
@@ -103,21 +98,15 @@ Palavra* buscaRH(Palavra** hash, char* palavra, int tamHash){
 		int k = n +c;
 		aux = hash[k];
 
-		while ((hash[k] != NULL) && (strcmp(hash[n]->palavra, palavra) != 0) && flag++){
+		while ((hash[k] != NULL) && (strcmp(hash[n]->palavra, palavra) != 0)){
 			k = k + c;
 			if (k > tamHash){
 				k = k- tamHash;
-				//  int j = k - tamHash;
-				//  while (hash[j] != NULL ){
-				// j = j + c;	
-				// }
-				// hash[j] = palavra;
-				// return 1;
 			}
 		}
-		if(flag)
-			return hash[k];
-		else return NULL;
+		if(hash[k] == NULL)
+			return NULL;
+		else return hash[k];
 	}
 
 

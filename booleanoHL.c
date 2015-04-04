@@ -32,11 +32,9 @@ Palavra** insereHashLinear(Palavra** hash, Palavra* palavra, int tamHash){
 	} else {
 		while (hash[n] != NULL){
 			n++;
+			if(n>tamHash)
+				n = 0;
 		}
-		if(n > tamHash)
-			printf("Palavra nao foi inserida pois hash estorou, e agora mulher?");
-		else
-			hash[n] = palavra;
 	}
 
 	return hash;
@@ -47,8 +45,11 @@ Palavra* buscaHashLinear(Palavra** hash, char* palavra, int tamHash){
 
 	chave = chaveHash(palavra, tamHash);
 	
-	while(hash[chave] != NULL && strcmp(hash[chave]->palavra, palavra) != 0)
+	while(hash[chave] != NULL && strcmp(hash[chave]->palavra, palavra) != 0){
 		chave++;
+		if(chave > tamHash)
+			chave = 0;
+	}
 	
 	if(hash[chave] == NULL)
 		return NULL;
