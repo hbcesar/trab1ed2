@@ -138,14 +138,17 @@ int retiraAcento(char* word){
 	else { 
 		if (((word[0]<=47) && (word[0]>=33)) || ( (word[0]<=63) && (word[0]>=58) )){
 			for(j=0;j<i; j++){
-				word[j]=(unsigned char)word[j+1];
+				word[j]=word[j+1];
 			}
 			word[j]='\0';
 			i--;
 		}
-		if (((word[i]<=47) && (word[i]>=33)) || ( (word[i]<=63) && (word[i]>=58) ) ){
-				word[i] = '\0';
+		for(j=i/2;j<=i;j++){
+			if (((word[j]<=47) && (word[j]>=33)) || ( (word[j]<=63) && (word[j]>=58) ) ){
+					word[j] = '\0';
+			}
 		}
+
 		word[0] = tolower(word[0]);
 		return 1;
 	}

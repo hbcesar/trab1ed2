@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <locale.h>
+//#include <locale.h>
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
@@ -33,13 +33,13 @@ void gerarIndice(char* tipo, char* entrada){
 	// if(strcmp(tipo, "booleanoENC") == 0)
 		populaHashENC(lista, hash, tamHash);
 	// else if (strcmp(tipo, "booleanoHL") == 0)
-		//populaHashLinear(lista, hash, tamHash);
+	//	populaHashLinear(lista, hash, tamHash);
 	// 	else if(strcmp(tipo, "booleanoRH") == 0)
 	//		populaReHash(lista, hash, tamHash);
 	// 		else if (strcmp(tipo, "booleanoAB") == 0)
 	// 			printf("Je ne suis tuas nega");
 
-	//imprimeHash(hash, tamHash);
+	imprimeHash(hash, tamHash);
 	//imprimeReHash(hash,tamHash);
 		Palavra* busca = buscaENC(hash, "principezinho", tamHash);
 		if(busca != NULL)
@@ -58,7 +58,7 @@ void gerarIndice(char* tipo, char* entrada){
 
 int main(int argc, char *argv[]){
 
-	setlocale(P_ALL, "pt_BR_utf8");
+	//setlocale(P_ALL, "pt_BR_utf8");
 
 	int i;
 	
