@@ -1,16 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
 #include "booleanoHL.h"
 #include "booleanoRH.h"
 
+
+/*********** ERROS QUE DESCOBRI *******
+Se o arquivo nao existir, hash apaga toda.
+Compilar hobbit + pequenoprincie e olhar linha 670
+Leti e Leti2 juntos sao considerados os mesmo arquivos
+*/
+
+
 void gerarIndice(char* tipo, char* entrada){
 	Palavra* lista;
 	Palavra** hash;
-	int tamHash =0;
+	int tamHash = 0;
 	lista=NULL;
 
 	printf("Entrada %s\n", entrada);
@@ -22,25 +31,35 @@ void gerarIndice(char* tipo, char* entrada){
 	hash = alocaHash(tamHash);
 
 	// if(strcmp(tipo, "booleanoENC") == 0)
-	// 	 populaHashENC(lista, hash, tamHash);
+		populaHashENC(lista, hash, tamHash);
 	// else if (strcmp(tipo, "booleanoHL") == 0)
-	 	//populaHashLinear(lista, hash, tamHash);
+		//populaHashLinear(lista, hash, tamHash);
 	// 	else if(strcmp(tipo, "booleanoRH") == 0)
-			populaReHash(lista, hash, tamHash);
+	//		populaReHash(lista, hash, tamHash);
 	// 		else if (strcmp(tipo, "booleanoAB") == 0)
 	// 			printf("Je ne suis tuas nega");
 
-	//imprimeHash(hash, tamHash);
+	imprimeHash(hash, tamHash);
 	//imprimeReHash(hash,tamHash);
-			Palavra* busca = buscaHashLinear(hash, "principezinho", tamHash);
+		Palavra* busca = buscaENC(hash, "principezinho", tamHash);
+		if(busca != NULL)
 			printf("Busca: %s\n", busca->palavra);
-}
+		else 
+			printf("Nao encontrado!");
+ }
 
-void lerIndice(){
+// void lerIndice(char* tipo, char* entrada){
+// 	// Palavra** hash;
+// 	// int tamHash = 0;
 
-}
+// 	// recriaHash()
+
+// }
 
 int main(int argc, char *argv[]){
+
+	setlocale(LC_ALL, "pt_BR_utf8");
+
 	int i;
 	
 

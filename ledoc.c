@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
@@ -108,7 +109,7 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 	char *word;
 	int i;
 
-	word = (char*)malloc(30*sizeof(char));
+	word = (char*)malloc(60*sizeof(char));
 
 	arq = fopen(nomeArq, "r");
 	if(arq == NULL){
@@ -117,8 +118,11 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 	} else{
 		Palavra* p;
 		for(i=0;fscanf(arq,"%s", word) == 1 ; i++){
-			retiraAcento(word);
-			lista = insere(lista, word, nomeArq, i);	
+			//if(word[0] != 10){
+				if(retiraAcento(word)){
+				lista = insere(lista, word, nomeArq, i);
+				}	
+			//}
 		}
 	}
 
@@ -127,12 +131,30 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 
 }
 
-void retiraAcento(char* word){
-	int i;
-	for (i=0;word[i]!='\0';i++){
+
+int retiraAcento(char* word){
+	int i, j;
+	i = strlen(word)-1;
+
+
+	if(i<4){
+		return 0;
+	} 
+	else { 
+		if (((word[0]<=47) && (word[0]>=33)) || ( (word[0]<=63) && (word[0]>=58) )){
+			for(j=0;j<i; j++){
+				word[j]=(unsigned char)word[j+1];
+			}
+			word[j]='\0';
+			i--;
+		}
 		if (((word[i]<=47) && (word[i]>=33)) || ( (word[i]<=63) && (word[i]>=58) ) ){
-			word[i] = '\0';		}
+				word[i] = '\0';
+		}
+		word[0] = tolower(word[0]);
+		return 1;
 	}
+
 }
 
 

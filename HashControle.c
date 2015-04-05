@@ -4,9 +4,6 @@
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 
-// int tamHash;
-
-
 Palavra** alocaHash(int tamHash){
 	Palavra** novo;
 	int i;
