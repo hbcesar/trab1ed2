@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+#include <locale.h>
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
@@ -10,9 +10,9 @@
 
 
 /*********** ERROS QUE DESCOBRI *******
-Se o arquivo nao existir, hash apaga toda.
-Compilar hobbit + pequenoprincie e olhar linha 670
-Leti e Leti2 juntos sao considerados os mesmo arquivos
+Se o arquivo nao existir, lista apaga toda.
+Compilar hobbit + pequenoprincie e olhar linha 670 -> provavelmente nao é problema de indexacao, e sim na hora de imprimir o hashENC, prq na lista fica certinho
+Leti e Leti2 juntos sao considerados os mesmo arquivos -> same as above
 */
 
 
@@ -25,7 +25,7 @@ void gerarIndice(char* tipo, char* entrada){
 	printf("Entrada %s\n", entrada);
 
 	lista = leArquivoDocumentos(lista, entrada);
-	//imprimeLista(lista);
+	imprimeLista(lista);
 	tamHash = tamanho_hash(nmrPalavras(lista));
 	printf("Tamanho da hash é : %d \n",tamHash);
 	hash = alocaHash(tamHash);
@@ -39,7 +39,7 @@ void gerarIndice(char* tipo, char* entrada){
 	// 		else if (strcmp(tipo, "booleanoAB") == 0)
 	// 			printf("Je ne suis tuas nega");
 
-	imprimeHash(hash, tamHash);
+	//imprimeHash(hash, tamHash);
 	//imprimeReHash(hash,tamHash);
 		Palavra* busca = buscaENC(hash, "principezinho", tamHash);
 		if(busca != NULL)
@@ -58,7 +58,7 @@ void gerarIndice(char* tipo, char* entrada){
 
 int main(int argc, char *argv[]){
 
-	setlocale(LC_ALL, "pt_BR_utf8");
+	setlocale(P_ALL, "pt_BR_utf8");
 
 	int i;
 	

@@ -52,27 +52,23 @@ void inserePosicao(Documento* doc, int posicao){
 }
 
 Documento* insereDoc(Documento* doc, char* nomeDoc, int posicao){
-	//checa se a lista esta vazia
-	if(doc == NULL){
-		Documento* novo = criaSDoc(nomeDoc, posicao);
-		return novo;
-	} else{ //senao, ve se o primeiro ja nao é o documento
-		if(strcmp (doc->nomeDoc, nomeDoc) == 0){
-			//se for, insere a posicao
-			inserePosicao(doc, posicao);
+
+	//checa se o primeiro ja nao é o documento
+	if(strcmp(doc->nomeDoc, nomeDoc) == 0){
+		//se for, insere a posicao
+		inserePosicao(doc, posicao);
+		return doc;
+	} else { //senao, percorre o resto da lista fazendo o mesmo tipo de verificacao
+		Documento* aux = doc;
+		while (aux->proximo!=NULL && (strcmp(aux->nomeDoc, nomeDoc) != 0)){
+			aux = aux->proximo;
+		}
+		if(strcmp(aux->nomeDoc, nomeDoc) == 0){
+			inserePosicao(aux, posicao);
 			return doc;
-		} else { //senao, percorre o resto da lista fazendo o mesmo tipo de verificacao
-			Documento* aux = doc;
-			while (aux->proximo!=NULL && (strcmp(aux->nomeDoc, nomeDoc) != 0)){
-				aux = aux->proximo;
-			}
-			if(strcmp(aux->nomeDoc, nomeDoc) == 0){
-				inserePosicao(aux, posicao);
-				return doc;
-			} else{
-				aux->proximo = criaSDoc(nomeDoc, posicao);
-				return doc;
-			}
+		} else{
+			aux->proximo = criaSDoc(nomeDoc, posicao);
+			return doc;
 		}
 	}
 }
@@ -84,7 +80,7 @@ Palavra* insere(Palavra* lista, char* word, char* nomeDoc, int posicao){
 	} 
 	else{ //se nao estiver:
 		//confere se o primeiro elemento nao tem a mesma palavra
-		if(strcmp (lista->palavra, word)==0){ // se tiver, insere documentos apenas
+		if(strcmp(lista->palavra, word)==0){ // se tiver, insere documentos apenas
 			lista->doc = insereDoc(lista->doc, nomeDoc, posicao);
 		} else { //senao, percorre o resto da lista fazendo o mesmo tipo de verificacao
 			Palavra* aux = lista;
@@ -97,10 +93,8 @@ Palavra* insere(Palavra* lista, char* word, char* nomeDoc, int posicao){
 				aux->proximo = criaPalavra(word, nomeDoc, posicao);
 			}
 		}
-			return lista;
+		return lista;
 	}
-
-
 }
 
 Palavra* leArquivo(Palavra* lista, char* nomeArq){
@@ -116,28 +110,29 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 		printf("Erro na leitura de arquivo.");
 		return NULL;
 	} else{
+		printf("Lendo arquivo %s...\n", nomeArq);
 		Palavra* p;
 		for(i=0;fscanf(arq,"%s", word) == 1 ; i++){
-			//if(word[0] != 10){
 				if(retiraAcento(word)){
 				lista = insere(lista, word, nomeArq, i);
 				}	
-			//}
 		}
+		fclose(arq);
 	}
 
+
 	return lista;
-//	fclose(arq);
+
 
 }
 
-
+//tem que fazer isso funcionar bonito, darling
 int retiraAcento(char* word){
 	int i, j;
 	i = strlen(word)-1;
 
 
-	if(i<4){
+	if(i<2){
 		return 0;
 	} 
 	else { 
@@ -157,28 +152,6 @@ int retiraAcento(char* word){
 
 }
 
-
-int leArquivoDocumentosAux(char* nomeArq){
-	int numLinha =0;
-	FILE *arq;
-	char c;
-
-	arq= fopen(nomeArq, "r");
-
-	if(arq == NULL){
-		printf("Erro na leitura de arquivo.");
-		return 0;
-
-	} else{
-		while((c = fgetc(arq)) != EOF){
-    		if(c == '\n')
-    			numLinha++;
- 		}
-		fclose(arq);
-		return ++numLinha;
-	}
-}
-
 Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq){
 	char word[30];
 	char** entradas;
@@ -190,28 +163,15 @@ Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq){
 		return NULL;
 	}
 
-	numLinhas = leArquivoDocumentosAux(nomeArq);
-
-
-	if(numLinhas > 0)
-		arq= fopen(nomeArq, "r");
-	else 
+	arq= fopen(nomeArq, "r");
+	if(arq==NULL)
 		return NULL;
 
-	printf("Numero de palavras para o arquivo %s é %d\n", nomeArq, numLinhas);
-
-	entradas = (char**)malloc(numLinhas*sizeof(char*));
-
 	for(i=0;fscanf(arq,"%s", word) == 1; i++){
-		entradas[i] = (char*)malloc((strlen(word)+1)*sizeof(char));
-		strcpy(entradas[i], word);
+		lista = leArquivo(lista, word);
 	}
 
-	for(i=0; i< numLinhas; i++){
-		lista = leArquivo(lista, entradas[i]);
-	}
-
-	//fclose(arq);
+	fclose(arq);
 	
 	return lista;
 
