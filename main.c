@@ -10,7 +10,7 @@
 
 
 /*********** ERROS QUE DESCOBRI *******
-Se o arquivo nao existir, lista apaga toda.
+Se o arquivo nao existir, lista apaga toda. [FIXED]
 Compilar hobbit + pequenoprincie e olhar linha 670 -> provavelmente nao é problema de indexacao, e sim na hora de imprimir o hashENC, prq na lista fica certinho
 Leti e Leti2 juntos sao considerados os mesmo arquivos -> same as above
 */
@@ -25,7 +25,7 @@ void gerarIndice(char* tipo, char* entrada){
 	printf("Entrada %s\n", entrada);
 
 	lista = leArquivoDocumentos(lista, entrada);
-	imprimeLista(lista);
+	//imprimeLista(lista);
 	tamHash = tamanho_hash(nmrPalavras(lista));
 	printf("Tamanho da hash é : %d \n",tamHash);
 	hash = alocaHash(tamHash);

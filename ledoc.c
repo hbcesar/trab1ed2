@@ -108,12 +108,11 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 	arq = fopen(nomeArq, "r");
 	if(arq == NULL){
 		printf("Erro na leitura de arquivo.");
-		return NULL;
 	} else{
 		printf("Lendo arquivo %s...\n", nomeArq);
 		Palavra* p;
 		for(i=0;fscanf(arq,"%s", word) == 1 ; i++){
-				if(retiraAcento(word)){
+				if(normaliza(word)){
 				lista = insere(lista, word, nomeArq, i);
 				}	
 		}
@@ -127,32 +126,26 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 }
 
 //tem que fazer isso funcionar bonito, darling
-int retiraAcento(char* word){
-	int i, j;
+int normaliza(char* word){
+	int i, j, k;
 	i = strlen(word)-1;
 
 
 	if(i<2){
 		return 0;
 	} 
-	else { 
-		if (((word[0]<=47) && (word[0]>=33)) || ( (word[0]<=63) && (word[0]>=58) )){
-			for(j=0;j<i; j++){
-				word[j]=word[j+1];
+
+	for (j=0; j<=i; j++){
+		if (((word[j]<=47) && (word[j]>=33)) || ( (word[j]<=63) && (word[j]>=58) )){
+			for(k=j;k<i; k++){
+				word[k]=word[k+1];
 			}
-			word[j]='\0';
+			word[k]='\0';
 			i--;
 		}
-		for(j=i/2;j<=i;j++){
-			if (((word[j]<=47) && (word[j]>=33)) || ( (word[j]<=63) && (word[j]>=58) ) ){
-					word[j] = '\0';
-			}
-		}
-
-		word[0] = tolower(word[0]);
-		return 1;
+		word[j]=tolower(word[j]);
 	}
-
+	return 1;
 }
 
 Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq){

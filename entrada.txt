@@ -1,2 +1,1 @@
-pequenoprincipe.txt
-hobbit.txt
+bib.txt

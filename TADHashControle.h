@@ -45,3 +45,6 @@ int chaveHash(char* palavra, int tamHash);
 // Pré-condição: Lista de palavras é válida e não nula.
 // Pós condição: Lista está vazia e palavras estão inseridas na tabeela Hash.
 Palavra** populaHash(Palavra** hash, Palavra* lista);
+
+
+void imprimeHash(Palavra** hash, int tamHash);

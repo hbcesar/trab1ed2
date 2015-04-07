@@ -11,7 +11,7 @@
 // Output: Nenhum.
 // Pré-condição: Hash não e nula.
 // Pós condição: Hash é impressa. X significa que a posição está ocupada; - significa que a posição está vazia.
-void imprimeHash(Palavra** hash, int tamHash);
+//void imprimeHash(Palavra** hash, int tamHash);
 
 // Função que busca uma palavra na tabela Hash.
 // Input: Palavra a ser buscada.

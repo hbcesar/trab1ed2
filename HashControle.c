@@ -85,7 +85,38 @@ int chaveHash(char* palavra, int tamHash){
 	return (chave % tamHash);
 }
 
+void imprimeHash(Palavra** hash, int tamHash){
+	FILE* arq;
+	int i;
+	int contador;
+	Palavra* aux = hash[0];
 
+	arq = fopen("indice.txt", "w");
+
+	for(i=0; i<tamHash; i++){
+
+		if(hash[i] != NULL){
+			aux = hash[i];
+			while (aux!= NULL){
+				fprintf(arq, "%d; %s; ", i, aux->palavra);
+				Documento* doc = aux ->doc;
+				while(doc != NULL){
+					fprintf(arq, "%s; ", doc->nomeDoc);
+					Posicao* pos = doc->posicao;
+					while(pos!=NULL){
+						fprintf(arq, "%d; ", pos->posicao);
+						pos = pos->proximo;
+					}
+					doc=doc->proximo;
+				}
+				aux=aux->proximo;
+			}
+				fprintf(arq, "\n");
+		} else{
+			fprintf(arq,"%d;-\n", i);
+		}		
+	}
+}
 
 // Palavra** populaHash(Palavra** hash, Palavra* lista){
 

@@ -105,4 +105,4 @@ Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq);
 // Pós condição: Número de linhas é um número natural.
 int leArquivoDocumentosAux(char* nomeArq);
 
-int retiraAcento(char* word);
+int normaliza(char* word);
