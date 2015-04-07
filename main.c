@@ -8,14 +8,6 @@
 #include "booleanoHL.h"
 #include "booleanoRH.h"
 
-
-/*********** ERROS QUE DESCOBRI *******
-Se o arquivo nao existir, lista apaga toda. [FIXED]
-Compilar hobbit + pequenoprincie e olhar linha 670 -> provavelmente nao é problema de indexacao, e sim na hora de imprimir o hashENC, prq na lista fica certinho
-Leti e Leti2 juntos sao considerados os mesmo arquivos -> same as above
-*/
-
-
 void gerarIndice(char* tipo, char* entrada){
 	Palavra* lista;
 	Palavra** hash;
