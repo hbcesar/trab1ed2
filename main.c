@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <locale.h>
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
 #include "booleanoHL.h"
 #include "booleanoRH.h"
+#include "vetorial.h"
 
 void gerarIndice(char* tipo, char* entrada){
 	Palavra* lista;
@@ -30,7 +30,7 @@ void gerarIndice(char* tipo, char* entrada){
 	//		populaReHash(lista, hash, tamHash);
 	// 		else if (strcmp(tipo, "booleanoAB") == 0)
 	// 			printf("Je ne suis tuas nega");
-
+	
 	imprimeHash(hash, tamHash);
 	//imprimeReHash(hash,tamHash);
 		Palavra* busca = buscaENC(hash, "principezinho", tamHash);
