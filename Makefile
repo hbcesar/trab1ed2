@@ -7,4 +7,5 @@ METODOS:
 	gcc -c HashControle.c
 	gcc -c main.c
 	gcc -c booleanoRH.c
-	gcc ledoc.o booleanoENC.o booleanoHL.o HashControle.o booleanoRH.o main.o -o executavel
+	gcc -c indexador.c
+	gcc ledoc.o booleanoENC.o booleanoHL.o HashControle.o booleanoRH.o indexador.o main.o -o executavel

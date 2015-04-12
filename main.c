@@ -7,6 +7,7 @@
 #include "TADHashEnc.h"
 #include "booleanoHL.h"
 #include "booleanoRH.h"
+#include "TADIndexador.h"
 
 void gerarIndice(char* tipo, char* entrada){
 	Palavra* lista;
@@ -14,30 +15,31 @@ void gerarIndice(char* tipo, char* entrada){
 	int tamHash = 0;
 	lista=NULL;
 
-	printf("Entrada %s\n", entrada);
+	//printf("Entrada %s\n", entrada);
 
-	lista = leArquivoDocumentos(lista, entrada);
+	//lista = leArquivoDocumentos(lista, entrada);
 	//imprimeLista(lista);
-	tamHash = tamanho_hash(nmrPalavras(lista));
-	printf("Tamanho da hash é : %d \n",tamHash);
-	hash = alocaHash(tamHash);
+	//tamHash = tamanho_hash(nmrPalavras(lista));
+	//printf("Tamanho da hash é : %d \n",tamHash);
+	//hash = alocaHash(tamHash);
 
 	// if(strcmp(tipo, "booleanoENC") == 0)
-		populaHashENC(lista, hash, tamHash);
+	//	populaHashENC(lista, hash, tamHash);
 	// else if (strcmp(tipo, "booleanoHL") == 0)
 	//	populaHashLinear(lista, hash, tamHash);
 	// 	else if(strcmp(tipo, "booleanoRH") == 0)
 	//		populaReHash(lista, hash, tamHash);
 	// 		else if (strcmp(tipo, "booleanoAB") == 0)
 	// 			printf("Je ne suis tuas nega");
+	hash = recriarHash("indice.txt");
 
-	imprimeHash(hash, tamHash);
+	imprimeHash2(hash, tamHash);
 	//imprimeReHash(hash,tamHash);
-		Palavra* busca = buscaENC(hash, "principezinho", tamHash);
-		if(busca != NULL)
-			printf("Busca: %s\n", busca->palavra);
-		else 
-			printf("Nao encontrado!");
+		// Palavra* busca = buscaENC(hash, "principezinho", tamHash);
+		// if(busca != NULL)
+		// 	printf("Busca: %s\n", busca->palavra);
+		// else 
+		// 	printf("Nao encontrado!");
  }
 
 // void lerIndice(char* tipo, char* entrada){
@@ -49,8 +51,6 @@ void gerarIndice(char* tipo, char* entrada){
 // }
 
 int main(int argc, char *argv[]){
-
-	//setlocale(P_ALL, "pt_BR_utf8");
 
 	int i;
 	

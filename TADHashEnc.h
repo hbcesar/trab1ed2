@@ -30,3 +30,4 @@ Palavra* buscaENC(Palavra** hash, char* palavra, int tamHash);
 void populaHashENC(Palavra* lista, Palavra** hash, int tamHash);
 
 void insereHash (Palavra** hash, Palavra* palavra, int tamHash);
+void imprimeHash2(Palavra** hash, int tamHash);

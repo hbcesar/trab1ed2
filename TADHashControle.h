@@ -47,4 +47,4 @@ int chaveHash(char* palavra, int tamHash);
 Palavra** populaHash(Palavra** hash, Palavra* lista);
 
 
-void imprimeHash(Palavra** hash, int tamHash);
+//void imprimeHash(Palavra** hash, int tamHash);
