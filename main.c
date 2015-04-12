@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <locale.h>
 #include "TADLeDoc.h"
 #include "TADHashControle.h"
 #include "TADHashEnc.h"
 #include "booleanoHL.h"
 #include "booleanoRH.h"
 #include "TADIndexador.h"
+#include "vetorial.h"
+
 
 void gerarIndice(char* tipo, char* entrada){
 	Palavra* lista;
@@ -34,6 +35,9 @@ void gerarIndice(char* tipo, char* entrada){
 	hash = recriarHash("indice.txt");
 
 	imprimeHash2(hash, tamHash);
+
+	
+	//imprimeHash(hash, tamHash);
 	//imprimeReHash(hash,tamHash);
 		// Palavra* busca = buscaENC(hash, "principezinho", tamHash);
 		// if(busca != NULL)

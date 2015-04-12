@@ -185,6 +185,31 @@ int nmrPalavras(Palavra* lista){
 	return i;
 }
 
+int contaPalavrasBusca(char* nomeArq){
+	char word[30];
+	char** entradas;
+	FILE* arq;
+	int i, numLinhas=0;
+
+	if(nomeArq == NULL){
+		printf("Arquivo de entrada nao especificado \n");
+		exit(1);
+	}
+
+	arq= fopen(nomeArq, "r");
+	if(arq==NULL){
+		exit(1);
+	}
+		
+	for(i=0;fscanf(arq,"%s", word) == 1; i++){
+		numLinhas++;
+	}
+
+	fclose(arq);
+	
+	return numLinhas;
+}
+
 void imprimeLista(Palavra* lista){
 	Palavra* aux = lista;
 	Documento* aux2;

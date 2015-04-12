@@ -106,3 +106,5 @@ Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq);
 int leArquivoDocumentosAux(char* nomeArq);
 
 int normaliza(char* word);
+
+int contaPalavrasBusca(char* nomeArq);

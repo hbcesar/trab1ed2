@@ -8,4 +8,5 @@ METODOS:
 	gcc -c main.c
 	gcc -c booleanoRH.c
 	gcc -c indexador.c
-	gcc ledoc.o booleanoENC.o booleanoHL.o HashControle.o booleanoRH.o indexador.o main.o -o executavel
+	gcc -c vetorial.c
+	gcc ledoc.o booleanoENC.o booleanoHL.o HashControle.o booleanoRH.o vetorial.o indexador.o main.o -o executavel

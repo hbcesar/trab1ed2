@@ -1,13 +1,5 @@
 gcc -c ledoc.c
-gcc -c booleanoENC.c
-gcc -c booleanoHL.c
-gcc -c HashControle.c
-gcc -c main.c
-gcc -c booleanoRH.c
-gcc -c indexador.c
-gcc ledoc.o booleanoENC.o booleanoHL.o HashControle.o booleanoRH.o indexador.o main.o -o executavel
-./executavel -i booleanoENC entrada.txt indice.txt
-19927
+
 0; Águias; hobbit.txt; 546; 550; 32771; 33053; 33703; 33726; 34357; 34499; 34625; 34749; 34954; 35075; 35425; 88192; 88194; 88200; 88232; 88234; 88285; 89204; 89319; 89615; 0; 2; hobbit.txt; 647; 0; comportasse; hobbit.txt; 1706; 0; cabide; hobbit.txt; 3146; 0; tesouros; hobbit.txt; 5418; 5478; 5595; 9749; 17286; 52750; 52805; 66071; 66599; 68035; 73977; 89015; 0; fechada; hobbit.txt; 7432; 7524; 21491; 64310; 68441; 0; conversamos; hobbit.txt; 9512; 0; volumoso; hobbit.txt; 11106; 0; retirálo; hobbit.txt; 11343; 0; experimentar; hobbit.txt; 12280; 0; enterrandoos; hobbit.txt; 14830; 0; relâmpagos; hobbit.txt; 18416; 18433; 18524; 0; hospitaleiras; hobbit.txt; 20510; 0; cabedal; hobbit.txt; 22402; 0; pouquinho; hobbit.txt; 23336; 29710; 35221; 0; persistiu; hobbit.txt; 26215; 0; abomináveis; hobbit.txt; 29079; 48641; 0; interessados; hobbit.txt; 29544; 0; encontraramnas; hobbit.txt; 31391; 0; profundamente; hobbit.txt; 34710; 34905; 48052; 88009; 0; dragão.; hobbit.txt; 35888; 0; quartilhos; hobbit.txt; 40304; 0; recostouse; hobbit.txt; 48531; 0; esgueirouse; hobbit.txt; 49055; 53377; 55628; 66662; 0; perturbou; hobbit.txt; 51398; 75393; 0; transformava; hobbit.txt; 52224; 0; montanha.; hobbit.txt; 59066; 0; prosperavam; hobbit.txt; 59611; 0; esporádicas; hobbit.txt; 60579; 0; comportavase; hobbit.txt; 61822; 0; aventurarse; hobbit.txt; 64167; 0; vislumbres; hobbit.txt; 64489; 0; 13; hobbit.txt; 66546; 0; remoção; hobbit.txt; 68160; 0; implacáveis; hobbit.txt; 69828; 76894; 0; dispostos; hobbit.txt; 73931; 77693; 0; acontecimentos; hobbit.txt; 77281; 80439; 92105; 0; improvisar; hobbit.txt; 78488; 0; traiçoeiras; hobbit.txt; 78968; 0; voltaremos; hobbit.txt; 79256; 85517; 0; informações; hobbit.txt; 83805; 0; possuído; hobbit.txt; 85688; 0; recompensou; hobbit.txt; 89973; 
 1;-
 2; intuito; hobbit.txt; 76573; 
