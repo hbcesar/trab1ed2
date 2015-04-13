@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "TADLeDoc.h"
+//#include "TADLeDoc.h
 
 
 // Função que aloca a tabela hash de acordo com o tamanho do número de palavras e seta os ponteiros da hash para NULL
@@ -46,5 +46,7 @@ int chaveHash(char* palavra, int tamHash);
 // Pós condição: Lista está vazia e palavras estão inseridas na tabeela Hash.
 Palavra** populaHash(Palavra** hash, Palavra* lista);
 
+
+Documento2* insereListaDocs(Documento2* lista, char* nomeDoc);
 
 //void imprimeHash(Palavra** hash, int tamHash);

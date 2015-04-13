@@ -28,6 +28,20 @@ struct posicao {
 typedef struct posicao Posicao;
 
 
+struct documento2 {
+	char* nomeDoc;
+	int* vetor;
+	struct documento2* proximo;
+	};
+
+typedef struct documento2 Documento2;
+
+struct palavraBusca {
+	char* nome;
+	struct palavraBusca* proximo;
+};
+
+typedef struct palavraBusca PalavraBusca;
 
 //Estrutura de dados que contmém a lista de palavras. Contém um ponteiro para a primeira e a última palavra da lista.
 // typedef struct listap ListaP;
@@ -106,5 +120,7 @@ Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq);
 int leArquivoDocumentosAux(char* nomeArq);
 
 int normaliza(char* word);
+
+Documento2* leArquivoDocumentosBusca(Documento2*, char*);
 
 int contaPalavrasBusca(char* nomeArq);

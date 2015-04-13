@@ -165,11 +165,36 @@ Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq){
 
 	for(i=0;fscanf(arq,"%s", word) == 1; i++){
 		lista = leArquivo(lista, word);
+		//(*listaDocs) = insereListaDocs(&listaDocs, word);
 	}
 
 	fclose(arq);
 	
 	return lista;
+
+}
+
+Documento2* leArquivoDocumentosBusca(Documento2* listaDocsBusca, char* nomeArq){
+	char word[30];
+	FILE* arq;
+	int i;
+
+	if(nomeArq == NULL){
+		printf("Arquivo de entrada nao especificado\n");
+		return NULL;
+	}
+
+	arq= fopen(nomeArq, "r");
+	if(arq==NULL)
+		return NULL;
+
+	for(i=0;fscanf(arq,"%s", word) == 1; i++){
+		listaDocsBusca = insereListaDocs(listaDocsBusca,word);
+	}
+
+	fclose(arq);
+	
+	return listaDocsBusca;
 
 }
 
@@ -193,12 +218,12 @@ int contaPalavrasBusca(char* nomeArq){
 
 	if(nomeArq == NULL){
 		printf("Arquivo de entrada nao especificado \n");
-		exit(1);
+		return 0;
 	}
 
 	arq= fopen(nomeArq, "r");
 	if(arq==NULL){
-		exit(1);
+		return 0;
 	}
 		
 	for(i=0;fscanf(arq,"%s", word) == 1; i++){

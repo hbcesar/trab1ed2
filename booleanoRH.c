@@ -101,9 +101,7 @@ Palavra* buscaRH(Palavra** hash, char* palavra, int tamHash){
 				k = k- tamHash;
 			}
 		}
-		if(hash[k] == NULL)
-			return NULL;
-		else return hash[k];
+		return hash[k];
 	}
 
 }

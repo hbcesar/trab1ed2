@@ -38,10 +38,7 @@ Palavra* buscaHashLinear(Palavra** hash, char* palavra, int tamHash){
 			chave = 0;
 	}
 	
-	if(hash[chave] == NULL)
-		return NULL;
-	else
-		return hash[chave];
+	return hash[chave];
 }
 
 void populaHashLinear(Palavra* lista, Palavra** hash, int tamHash){

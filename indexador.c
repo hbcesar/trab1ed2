@@ -40,7 +40,19 @@ int contaNmrPosicoes(Posicao* p){
 	return i;
 }
 
-void imprimeHash(Palavra** hash, int tamHash){
+int contaNmrDocs2(Documento2* d2){
+	Documento2* aux = d2;
+	int i=0;
+
+	while (aux!=NULL){
+		aux=aux->proximo;
+		i++;
+	}
+
+	return i;
+}
+
+void imprimeHash(Palavra** hash, int tamHash, Documento2* listaDocs){
 	FILE* arq;
 	int i;
 	int contador;
@@ -51,7 +63,20 @@ void imprimeHash(Palavra** hash, int tamHash){
 	if (arq == NULL)
 		return;
 
-	fprintf(arq, "%d\n", tamHash);
+
+
+	Documento2* auxDocs = listaDocs;
+
+	fprintf(arq, "%d;", contaNmrDocs2(listaDocs));
+
+	while(auxDocs != NULL){
+		fprintf(arq, "%s ", auxDocs->nomeDoc);
+		auxDocs=auxDocs->proximo;
+	}
+
+	fprintf(arq, "\n%d\n", tamHash);
+
+	fprintf(arq, "\n");
 
 	for(i=0; i<tamHash; i++){
 		if(hash[i] != NULL){
@@ -81,11 +106,33 @@ void imprimeHash(Palavra** hash, int tamHash){
 	}
 }
 
-Palavra** recriarHash(char* nomeArq){
+Documento2* recriarListaDocs(char*nomeArq, Documento2* listaDocs){
+	FILE* arq;
+	int nmrDocs=0, i;
+	char *nomeDoc = (char*)malloc(30*sizeof(char));
+
+	arq = fopen(nomeArq, "r");
+
+	if (arq == NULL)
+		return NULL;
+
+	fscanf(arq, "\n%d;", &nmrDocs);
+	
+	for(i=0; i<nmrDocs; i++){
+		fscanf(arq, "%s", nomeDoc);
+		listaDocs = insereListaDocs(listaDocs, nomeDoc);
+	}
+
+	fclose(arq);
+
+	return listaDocs;
+}
+
+Palavra** recriarHash(char* nomeArq, int* tamHash, Documento2* listaDocs){
 	Palavra** hash=NULL;
 	Palavra* aux=NULL;
 	FILE* arq;
-	int tamHash;
+	//int tamHash;
 	int i=0;
 	int nmrPalavras=0;
 	int nmrDocs=0;
@@ -93,19 +140,26 @@ Palavra** recriarHash(char* nomeArq){
 	char *palavra = (char*)malloc(60*sizeof(char));
 	char *nomeDoc = (char*)malloc(30*sizeof(char));
 	int posicao;
+	int nmrDocs2=0;
 
 
-	arq = fopen("indice.txt", "r");
+	arq = fopen(nomeArq, "r");
 
 	if (arq == NULL)
 		return NULL;
 
-	fscanf(arq, "%d", &tamHash);
-	printf("%d\n", tamHash);
+	fscanf(arq, "\n%d;", &nmrDocs2);
+	
+	for(i=0; i<nmrDocs2; i++){
+		fscanf(arq, "%s", nomeDoc);
+//		insereListaDocs(listaDocs, nomeDoc);
+	}
 
-	hash = alocaHash(tamHash);
+	fscanf(arq, "%d", tamHash);
 
-	while(i<(tamHash-1)){
+	hash = alocaHash((*tamHash));
+
+	while(i<((*tamHash)-1)){
 		fscanf(arq, "\n%d;", &i);
 		fscanf(arq, "%d;", &nmrPalavras);
 		while(nmrPalavras > 0){

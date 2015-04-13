@@ -8,6 +8,7 @@
 #include "booleanoRH.h"
 #include "TADIndexador.h"
 #include "vetorial.h"
+#include "TADBuscador.h"
 
 
 void gerarIndice(char* tipo, char* entrada){
@@ -15,29 +16,24 @@ void gerarIndice(char* tipo, char* entrada){
 	Palavra** hash;
 	int tamHash = 0;
 	lista=NULL;
+	Documento2* listaDocs = NULL;
 
-	//printf("Entrada %s\n", entrada);
+	lista = leArquivoDocumentos(lista, entrada);
+	listaDocs = leArquivoDocumentosBusca(listaDocs, entrada);
+	tamHash = tamanho_hash(nmrPalavras(lista));
+	hash = alocaHash(tamHash);
 
-	//lista = leArquivoDocumentos(lista, entrada);
-	//imprimeLista(lista);
-	//tamHash = tamanho_hash(nmrPalavras(lista));
-	//printf("Tamanho da hash é : %d \n",tamHash);
-	//hash = alocaHash(tamHash);
-
-	// if(strcmp(tipo, "booleanoENC") == 0)
-	//	populaHashENC(lista, hash, tamHash);
-	// else if (strcmp(tipo, "booleanoHL") == 0)
-	//	populaHashLinear(lista, hash, tamHash);
-	// 	else if(strcmp(tipo, "booleanoRH") == 0)
-	//		populaReHash(lista, hash, tamHash);
-	// 		else if (strcmp(tipo, "booleanoAB") == 0)
-	// 			printf("Je ne suis tuas nega");
-	hash = recriarHash("indice.txt");
-
-	imprimeHash2(hash, tamHash);
+	if(strcmp(tipo, "booleanoENC") == 0)
+		populaHashENC(lista, hash, tamHash);
+	else if (strcmp(tipo, "booleanoHL") == 0)
+		populaHashLinear(lista, hash, tamHash);
+		else if(strcmp(tipo, "booleanoRH") == 0)
+			populaReHash(lista, hash, tamHash);
+			else if (strcmp(tipo, "booleanoAB") == 0)
+				printf("Nao implementado.");
 
 	
-	//imprimeHash(hash, tamHash);
+	imprimeHash(hash, tamHash, listaDocs);
 	//imprimeReHash(hash,tamHash);
 		// Palavra* busca = buscaENC(hash, "principezinho", tamHash);
 		// if(busca != NULL)
@@ -46,13 +42,23 @@ void gerarIndice(char* tipo, char* entrada){
 		// 	printf("Nao encontrado!");
  }
 
-// void lerIndice(char* tipo, char* entrada){
-// 	// Palavra** hash;
-// 	// int tamHash = 0;
+void lerIndice(char* tipo, char* entrada, char* arqBuscas){
+	Palavra** hash;
+	Documento2* listaDocs = NULL;
+	int tamHash = 0;
 
-// 	// recriaHash()
+	listaDocs = recriarListaDocs(entrada, listaDocs);
 
-// }
+	//RECRIA O INDICE E TESTA ISSO
+	// while(listaDocs!=NULL){
+	// 	printf("%s\n", listaDocs->nomeDoc);
+	// 	listaDocs = listaDocs->proximo;	
+	// }
+
+	hash = recriarHash(entrada, &tamHash);
+
+	buscador(arqBuscas, tipo, hash, tamHash);
+}
 
 int main(int argc, char *argv[]){
 
@@ -61,6 +67,8 @@ int main(int argc, char *argv[]){
 
 	if(strcmp(argv[1], "-i") == 0){
 		gerarIndice(argv[2], argv[3]);
+	} else if(strcmp(argv[1], "-b") == 0){
+		lerIndice(argv[2], argv[3], argv[4]);
 	}
 
 

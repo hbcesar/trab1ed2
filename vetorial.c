@@ -7,86 +7,34 @@
 #include "vetorial.h"
 
 
-Documento2* criaSDocBusca (char* nomeDoc, char* nomeArq){
-	Documento2* novo = (Documento2*)malloc(sizeof(Documento2));
-	novo->nomeDoc = (char*)malloc((strlen(nomeDoc)+1)*sizeof(char));
-	strcpy(novo->nomeDoc, nomeDoc);
-	int tamanho = contaPalavrasBusca(nomeArq);
-	novo->vetor = (int*)malloc((tamanho)*sizeof(int));
-
-	int i,j;
-	for (j=novo->vetor[i];j<sizeof(novo->vetor);j++,i++){
-		novo->vetor[i] = 0;
-	}
-
-	novo->proximo = NULL;
+// Documento2* criaSDocBusca (char* nomeDoc, char* nomeArq){
+// 	Documento2* novo = (Documento2*)malloc(sizeof(Documento2));
+// 	novo->nomeDoc = (char*)malloc((strlen(nomeDoc)+1)*sizeof(char));
+// 	strcpy(novo->nomeDoc, nomeDoc);
+// 	novo->vetor=NULL;
+// 	novo->proximo = NULL;
 	
-	return novo;
-}
+// 	return novo;
+//}
 
-PalavraBusca* criaPalavraBusca (char* Palavra){
-	PalavraBusca* novo = (PalavraBusca*)malloc(sizeof(PalavraBusca));
-	novo->nome= (char*)malloc((strlen(Palavra)+1)*sizeof(char));
-	strcpy(novo->nome, Palavra);
-	novo->proximo = NULL;
-	
-	return novo;
 
-}
 
-void inserePalavraBusca(PalavraBusca* lista, char* nomeArq){
-	int i;
-	char word[30];
-	FILE* arq;
+void alocaVetores(Documento2* listaDocumentos, int tamanho){
+	Documento2* aux;
+	int i=0;
 
-	if(nomeArq == NULL){
-		printf("Arquivo de entrada nao especificado\n");
-		exit(1);
-	}
+	while(aux!=NULL){
+		aux->vetor = (int*)malloc((tamanho)*sizeof(int));
 
-arq= fopen(nomeArq, "r");
-	if(arq==NULL)
-		exit(1);
-
-	for(i=0;fscanf(arq,"%s", word) == 1; i++){
-	if(lista == NULL)
-		lista = criaPalavraBusca(word);
-	else { 
-		PalavraBusca* aux = lista;
-		while(aux->proximo != NULL)
-			aux = aux->proximo;
-		aux->proximo = criaPalavraBusca(word);
+		for (i=0; i<tamanho;i++){
+			aux->vetor[i] = 0;
+		}
 	}
 }
-}
 
-Documento2* leArquivoDocumentosBusca(Documento2* listaDocsBusca, char* nomeArq){
-	char word[30];
-	char** entradas;
-	FILE* arq;
-	int i;
-
-	if(nomeArq == NULL){
-		printf("Arquivo de entrada nao especificado\n");
-		return NULL;
-	}
-
-	arq= fopen(nomeArq, "r");
-	if(arq==NULL)
-		return NULL;
-
-	for(i=0;fscanf(arq,"%s", word) == 1; i++){
-		listaDocsBusca = criaSDocBusca(word,nomeArq);
-	}
-
-	fclose(arq);
-	
-	return listaDocsBusca;
-
-}
-
-int contaOcorrecincas(Palavra** hash, char* palavra, int tamHash, char* nomeArq, Documento2* lista){
-	int chave =0;
+int contaOcorrecincas(Palavra** hash, int tamHash, char* palavra, char* documento){
+	int chave = 0;
+	int i = 0;
 
 	chave = chaveHash(palavra, tamHash);
 
@@ -96,16 +44,102 @@ int contaOcorrecincas(Palavra** hash, char* palavra, int tamHash, char* nomeArq,
 		aux=aux->proximo;
 	}
 	if(aux == NULL)
-		exit(1);
+		return 0;
 	else{
 		Documento* aux2 = aux->doc;
-		while(aux2 != NULL){
+		while(aux2 != NULL && strcmp(aux2->nomeDoc, documento) != 0)
+			aux2=aux2->proximo;
+		if(aux2 == NULL)
+			return 0;
+		else{
+			Posicao* aux3 = aux2->posicao;
+			while(aux3 != NULL){
+				aux3 = aux3 ->proximo;
+				i++;
+			}
+		}	
+		return i;
+	}
 
+}
 
-		aux2=aux2->proximo;
+void preencheBusca(PalavraBusca* listaPalavras, Documento2* listaDocumentos, Palavra** hash, int tamHash){
+	int i=0;
+	PalavraBusca* aux = listaPalavras;
+	Documento2* aux2 = listaDocumentos;
+
+	for(i=0; aux == NULL; aux=aux->proximo, i++){
+		while(aux2!=NULL){
+			aux2->vetor[i] = contaOcorrecincas(hash, tamHash, aux->nome, aux2->nomeDoc);
+			aux2=aux2->proximo;
 		}
+		aux2=listaDocumentos;
+	}
+}
+
+void rankear(Documento2* listaDocumentos){
+	Documento2* aux = listaDocumentos;
+	int i=0;
+
+	while(aux!=NULL){
+		i++;
+		aux=aux->proximo;
+	}
+
+	rankeiaAux(listaDocumentos, i);
+}
+
+int soma(int* vetor){
+	int i, k=0;
+	int n = sizeof(vetor)/sizeof(int);
+
+	for(i=0; i<n; i++){
+		k = k + vetor[i];
+	}
+
+	return k;
 
 }
 
-		
+
+void rankeiaAux(Documento2* listaDocumentos, int tamanho){
+	int rank[tamanho][2];
+	int i, j, k=0, x=0, aux2;
+
+	Documento2* aux = listaDocumentos;
+
+	for(i=0; i<tamanho; i++){
+		rank[i][0]=i;
+		rank[i][1]=soma(aux->vetor);
+		aux=aux->proximo;
+	}
+
+	for(i=0; i<tamanho; i++){
+		for(j=i+1; j<tamanho; j++){
+			if(rank[i][1] > x){
+			x = rank[i][1];
+			k=i;
+			}
+		}
+		aux2=rank[i][1];
+		rank[i][0] = rank[k][0];
+		rank[i][1] = x;
+		rank[k][0] = i;
+		rank[k][1] = aux2;
+	}
+
 }
+
+void imprime(Documento2* listaDocumentos, int tamanho, int rank[tamanho][2]){
+	Documento2* aux = listaDocumentos;
+	int i, j;
+
+	for(i=0; i<tamanho; i++){
+		for(j=0; j<rank[i][0]; j++){
+			aux=aux->proximo;
+		}
+		printf("%s\n", aux->nomeDoc);
+	}
+}
+
+

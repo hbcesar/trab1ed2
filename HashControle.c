@@ -85,6 +85,29 @@ int chaveHash(char* palavra, int tamHash){
 	return (chave % tamHash);
 }
 
+Documento2* criaSDocBusca (char* nomeDoc){
+	Documento2* novo = (Documento2*)malloc(sizeof(Documento2));
+	novo->nomeDoc = (char*)malloc((strlen(nomeDoc)+1)*sizeof(char));
+	strcpy(novo->nomeDoc, nomeDoc);
+	novo->vetor=NULL;
+	novo->proximo = NULL;
+	
+	return novo;
+}
+
+Documento2* insereListaDocs(Documento2* lista, char* nomeDoc){
+	if(lista != NULL){
+		Documento2* aux=lista;
+
+		while(aux->proximo != NULL)
+			aux=aux->proximo;
+	}
+
+	lista = criaSDocBusca(nomeDoc);
+
+	return lista;
+}
+
 // void imprimeHash(Palavra** hash, int tamHash){
 // 	FILE* arq;
 // 	int i;

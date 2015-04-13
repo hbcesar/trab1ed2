@@ -1,18 +1,18 @@
 #ifndef TADHASHCONTROLE
 #define TADHASHCONTROLE
 
-struct documento2 {
-char* nomeDoc;
-int* vetor;
-struct documento2* proximo;
-};
+// struct documento2 {
+// 	char* nomeDoc;
+// 	int* vetor;
+// 	struct documento2* proximo;
+// 	};
 
-typedef struct documento2 Documento2;
+// typedef struct documento2 Documento2;
 
-struct palavraBusca {
-char* nome;
-struct palavraBusca* proximo;
-};
 
-typedef struct palavraBusca PalavraBusca;
+
+void alocaVetores(Documento2* listaDocumentos, int tamanho);
+void preencheBusca(PalavraBusca* listaPalavras, Documento2* listaDocumentos, Palavra** hash, int tamHash);
+void rankeiaAux(Documento2* listaDocumentos, int tamanho);
+
 #endif
