@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "TADLeDoc.h"
+#include "booleanoHL.h"
 #include "TADHashControle.h"
+
 
 Palavra** insereHashLinear(Palavra** hash, Palavra* palavra, int tamHash){
 	int n = 0;
@@ -27,8 +29,9 @@ Palavra** insereHashLinear(Palavra** hash, Palavra* palavra, int tamHash){
 	return hash;
 }
 
-Palavra* buscaHashLinear(Palavra** hash, char* palavra, int tamHash){
+Palavra* buscaHL(Palavra** hash, char* palavra, int tamHash){
 	int chave =0;
+	Palavra* p;
 
 	chave = chaveHash(palavra, tamHash);
 	
@@ -37,8 +40,10 @@ Palavra* buscaHashLinear(Palavra** hash, char* palavra, int tamHash){
 		if(chave > tamHash)
 			chave = 0;
 	}
+
+	p=hash[chave];
 	
-	return hash[chave];
+	return p;
 }
 
 void populaHashLinear(Palavra* lista, Palavra** hash, int tamHash){

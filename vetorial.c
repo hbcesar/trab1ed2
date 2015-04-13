@@ -6,21 +6,12 @@
 #include "TADHashEnc.h"
 #include "vetorial.h"
 
-
-// Documento2* criaSDocBusca (char* nomeDoc, char* nomeArq){
-// 	Documento2* novo = (Documento2*)malloc(sizeof(Documento2));
-// 	novo->nomeDoc = (char*)malloc((strlen(nomeDoc)+1)*sizeof(char));
-// 	strcpy(novo->nomeDoc, nomeDoc);
-// 	novo->vetor=NULL;
-// 	novo->proximo = NULL;
-	
-// 	return novo;
-//}
+PalavraBusca* listaPalavras;
+Documento2* listaDocumentos;
 
 
-
-void alocaVetores(Documento2* listaDocumentos, int tamanho){
-	Documento2* aux;
+void alocaVetores(int tamanho){
+	Documento2* aux = listaDocumentos;
 	int i=0;
 
 	while(aux!=NULL){
@@ -28,6 +19,52 @@ void alocaVetores(Documento2* listaDocumentos, int tamanho){
 
 		for (i=0; i<tamanho;i++){
 			aux->vetor[i] = 0;
+		}
+	}
+}
+
+PalavraBusca* criaPalavraBusca (char* Palavra){
+
+	PalavraBusca* novo = (PalavraBusca*)malloc(sizeof(PalavraBusca));
+	novo->nome= (char*)malloc((strlen(Palavra)+1)*sizeof(char));
+	strcpy(novo->nome, Palavra);
+	novo->proximo = NULL;
+	
+	return novo;
+}
+
+void inserePalavraBusca(Palavra** hash, int tamHash, char* nomeArq, char* tipo){
+	int i, j;
+	char* palavra = (char*)malloc(30*sizeof(char));
+	FILE* arq;
+
+	if(nomeArq == NULL){
+		printf("Arquivo de entrada nao especificado\n");
+		return;
+	}
+
+	arq= fopen(nomeArq, "r");
+
+	if(arq==NULL)
+		return;
+
+	for(i=0, j=0; (palavra[i] = fgetc(arq) != EOF); i++){
+		if(palavra[i] == 32 || palavra[i] == 10){
+			j++;
+			if(listaPalavras == NULL){
+				if(normaliza(palavra))
+					listaPalavras = criaPalavraBusca(palavra);
+			} else { 
+				PalavraBusca* aux = listaPalavras;
+				while(aux->proximo != NULL)
+					aux = aux->proximo;
+				aux->proximo = criaPalavraBusca(palavra);
+			}
+		}
+		if (palavra[i]== 10){
+			alocaVetores(listaDocumentos, j);
+			preencheBusca(listaPalavras, listaDocumentos, hash, tamHash);
+			i=0;
 		}
 	}
 }
@@ -142,4 +179,4 @@ void imprime(Documento2* listaDocumentos, int tamanho, int rank[tamanho][2]){
 	}
 }
 
-
+void buscar()

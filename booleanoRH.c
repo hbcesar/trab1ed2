@@ -90,7 +90,6 @@ Palavra* buscaRH(Palavra** hash, char* palavra, int tamHash){
 	if(strcmp(hash[n]->palavra, palavra) == 0){
 		return hash[n];
 	} else {
-		// se c receber zero, gera loop infinito!
 		int c  = abs(palavra[0]);
 		int k = n +c;
 		aux = hash[k];

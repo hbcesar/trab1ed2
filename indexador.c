@@ -182,13 +182,3 @@ Palavra** recriarHash(char* nomeArq, int* tamHash, Documento2* listaDocs){
 	}
 	return hash;
 }
-
-
-
-
-
-
-
-
-
-

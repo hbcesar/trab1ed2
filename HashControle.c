@@ -96,66 +96,19 @@ Documento2* criaSDocBusca (char* nomeDoc){
 }
 
 Documento2* insereListaDocs(Documento2* lista, char* nomeDoc){
-	if(lista != NULL){
-		Documento2* aux=lista;
+	Documento2* aux=lista;
 
-		while(aux->proximo != NULL)
+	if(lista == NULL)
+		lista = criaSDocBusca(nomeDoc);
+	else{
+		while(aux->proximo != NULL && strcmp(aux->nomeDoc, nomeDoc) != 0)
 			aux=aux->proximo;
-	}
 
-	lista = criaSDocBusca(nomeDoc);
-
+		if(strcmp(aux->nomeDoc, nomeDoc) == 0)
+			return lista;
+		else
+			aux->proximo = criaSDocBusca(nomeDoc);
+		}
+		
 	return lista;
 }
-
-// void imprimeHash(Palavra** hash, int tamHash){
-// 	FILE* arq;
-// 	int i;
-// 	int contador;
-// 	Palavra* aux = hash[0];
-
-// 	arq = fopen("indice.txt", "w");
-
-// 	for(i=0; i<tamHash; i++){
-
-// 		if(hash[i] != NULL){
-// 			aux = hash[i];
-// 			while (aux!= NULL){
-// 				fprintf(arq, "%d; %s; ", i, aux->palavra);
-// 				Documento* doc = aux ->doc;
-// 				while(doc != NULL){
-// 					fprintf(arq, "%s; ", doc->nomeDoc);
-// 					Posicao* pos = doc->posicao;
-// 					while(pos!=NULL){
-// 						fprintf(arq, "%d; ", pos->posicao);
-// 						pos = pos->proximo;
-// 					}
-// 					doc=doc->proximo;
-// 				}
-// 				aux=aux->proximo;
-// 			}
-// 				fprintf(arq, "\n");
-// 		} else{
-// 			fprintf(arq,"%d;-\n", i);
-// 		}		
-// 	}
-// }
-
-// Palavra** populaHash(Palavra** hash, Palavra* lista){
-
-// 	Palavra* aux = lista;
-// 	Palavra* aux2 = NULL;
-
-// 	if(aux == NULL){
-// 		printf("ERRO: Nenhuma palavra foi indexada, queridinha!");
-// 	} else{
-// 		while(aux != NULL){
-// 			aux2 = aux->proximo;
-// 			aux->proximo = NULL;
-// 			insereHash(aux);
-// 			aux = aux2;
-// 		}
-// 	}
-
-// 	return hash;
-// }

@@ -125,7 +125,6 @@ Palavra* leArquivo(Palavra* lista, char* nomeArq){
 
 }
 
-//tem que fazer isso funcionar bonito, darling
 int normaliza(char* word){
 	int i, j, k;
 	i = strlen(word)-1;
@@ -165,7 +164,6 @@ Palavra* leArquivoDocumentos(Palavra* lista, char* nomeArq){
 
 	for(i=0;fscanf(arq,"%s", word) == 1; i++){
 		lista = leArquivo(lista, word);
-		//(*listaDocs) = insereListaDocs(&listaDocs, word);
 	}
 
 	fclose(arq);
