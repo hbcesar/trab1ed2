@@ -46,7 +46,11 @@ int chaveHash(char* palavra, int tamHash);
 // Pós condição: Lista está vazia e palavras estão inseridas na tabeela Hash.
 Palavra** populaHash(Palavra** hash, Palavra* lista);
 
-
+// Função que insere um documento do tipo 2 nua lista de documentos
+// Input: Lista de documentos e o nome do documento a ser inserido
+// Output: Ponteiro para a lista
+// Pré-condição: Lista de documentos é válida e não nula.
+// Pós condição: Lista não está vazia e documento está inserido
 Documento2* insereListaDocs(Documento2* lista, char* nomeDoc);
 
 //void imprimeHash(Palavra** hash, int tamHash);
