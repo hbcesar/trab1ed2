@@ -29,5 +29,10 @@ Palavra* buscaENC(Palavra** hash, char* palavra, int tamHash);
 
 void populaHashENC(Palavra* lista, Palavra** hash, int tamHash);
 
+// Função que insere uma palavra na Hash utilizando o método da colisão por lista encadeda
+// Input: A hash de palavras, a palavra a ser inserida e o tamanho da Hash
+// Output: Nenhum.
+// Pré-condição: Paramentros nao sao nulos
+// Pós condição: Palavra é inserida na Hash na sua posição correta
 void insereHash (Palavra** hash, Palavra* palavra, int tamHash);
 void imprimeHash2(Palavra** hash, int tamHash);
