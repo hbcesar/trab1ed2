@@ -5,7 +5,7 @@
 // Input: A palavra a ser inserida, a tabela Hash e o tamanho da tabela
 // Output: A tabela Hash
 // Pré-condição: Parametros nao sao nulos
-// Pós condição:
+// Pós condição: Palavra é inserida na Hash e Hash é retornada
 Palavra** insereHashLinear(Palavra** hash, Palavra* palavra, int tamHash);
 
 // Função que busca uma determinada palavra na tabela Hash pelo método do Hashing Linear
